@@ -444,15 +444,8 @@
 
     <script>
         function downloadSchedule() {
-            // Create a link element
-            const link = document.createElement('a');
-            link.href = 'Schedule.pdf';
-            link.download = 'Event_Schedule_2025.pdf';
-            
-            // Trigger download
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            // Redirect to Google Drive link
+            window.open('https://drive.google.com/file/d/1Ggh-k66H7gKnBC7wefEBVEbidnxs5-oL/view?usp=sharing', '_blank');
         }
 
         // Add smooth scroll behavior
@@ -465,6 +458,9 @@
                 }
             });
         });
+
+        // Test the download function
+        console.log('Download function ready');
     </script>
 </body>
 </html>
