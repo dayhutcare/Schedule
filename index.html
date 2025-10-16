@@ -1,466 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Event Schedule 2025</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* (আপনার আগের CSS এখানেই আছে — আমি অপরিবর্তিত রেখেছি) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            color: #333;
+            min-height: 100vh; padding: 20px; color: #333;
         }
-
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+            max-width: 1200px; margin: 0 auto;
+            background: rgba(255,255,255,0.95); border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden;
             animation: fadeIn 0.6s ease-out;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        @keyframes fadeIn { from { opacity:0; transform:translateY(30px)} to {opacity:1; transform:translateY(0)} }
         header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            color: white; padding: 40px 30px; text-align:center; position:relative; overflow:hidden;
         }
-
         header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
             background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: drift 20s linear infinite;
+            background-size: 50px 50px; animation: drift 20s linear infinite;
         }
-
-        @keyframes drift {
-            from { transform: translate(0, 0); }
-            to { transform: translate(50px, 50px); }
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .subtitle {
-            font-size: 1.1em;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
-        }
-
-        .content {
-            padding: 40px 30px;
-        }
-
-        .day-section {
-            margin-bottom: 40px;
-            animation: slideIn 0.6s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .day-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .schedule-table thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .schedule-table th {
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 1.1em;
-        }
-
-        .schedule-table td {
-            padding: 15px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .schedule-table tbody tr {
-            transition: all 0.3s ease;
-        }
-
-        .schedule-table tbody tr:hover {
-            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            transform: translateX(5px);
-        }
-
-        .schedule-table tbody tr:last-child td {
-            border-bottom: none;
-        }
-
-        .time {
-            font-weight: 600;
-            color: #667eea;
-            white-space: nowrap;
-        }
-
-        .event {
-            color: #333;
-        }
-
-        .room {
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.75em;
-            font-weight: 600;
-            margin-left: 8px;
-        }
-
-        .badge-final {
-            background: #ff6b6b;
-            color: white;
-        }
-
-        .badge-prelim {
-            background: #4ecdc4;
-            color: white;
-        }
-
-        .download-section {
-            text-align: center;
-            padding: 40px 30px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-        }
-
+        @keyframes drift { from { transform: translate(0,0) } to { transform: translate(50px,50px) } }
+        h1 { font-size:2.5em; margin-bottom:10px; position:relative; z-index:1; text-shadow:2px 2px 4px rgba(0,0,0,0.2); }
+        .subtitle { font-size:1.1em; opacity:0.95; position:relative; z-index:1; }
+        .content { padding:40px 30px; }
+        .day-section { margin-bottom:40px; animation: slideIn 0.6s ease-out; }
+        @keyframes slideIn { from { opacity:0; transform:translateX(-20px) } to { opacity:1; transform:translateX(0) } }
+        .day-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:white; padding:15px 25px; border-radius:10px; font-size:1.5em; font-weight:bold; margin-bottom:20px; box-shadow:0 4px 15px rgba(102,126,234,0.3); }
+        .schedule-table { width:100%; border-collapse:collapse; background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
+        .schedule-table thead { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:white; }
+        .schedule-table th { padding:15px; text-align:left; font-weight:600; font-size:1.1em; }
+        .schedule-table td { padding:15px; border-bottom:1px solid #f0f0f0; }
+        .schedule-table tbody tr { transition: all 0.3s ease; }
+        .schedule-table tbody tr:hover { background: linear-gradient(90deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%); transform: translateX(5px); }
+        .schedule-table tbody tr:last-child td { border-bottom: none; }
+        .time { font-weight:600; color:#667eea; white-space:nowrap; }
+        .event { color:#333; }
+        .room { color:#666; font-size:0.9em; }
+        .badge { display:inline-block; padding:3px 8px; border-radius:12px; font-size:0.75em; font-weight:600; margin-left:8px; }
+        .badge-final { background:#ff6b6b; color:white; }
+        .badge-prelim { background:#4ecdc4; color:white; }
+        .download-section { text-align:center; padding:40px 30px; background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%); }
+        /* Changed: .download-btn is now used on an anchor */
         .download-btn {
-            display: inline-block;
-            padding: 18px 45px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2em;
-            font-weight: 600;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            display:inline-block; padding:18px 45px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color:white; text-decoration:none; border-radius:50px; font-size:1.2em; font-weight:600;
+            box-shadow:0 8px 25px rgba(102,126,234,0.4); transition: all 0.3s ease; border:none; cursor:pointer;
         }
-
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        .download-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(102,126,234,0.5); }
+        .download-btn::before { content: '📥 '; font-size:1.2em; }
+        footer { text-align:center; padding:20px; color:#666; font-size:0.9em; }
+        @media (max-width:768px) {
+            body { padding:10px; } h1 { font-size:1.8em; } .subtitle { font-size:0.9em; } .content { padding:20px 15px; } header { padding:30px 20px; }
+            .schedule-table { font-size:0.9em; } .schedule-table th, .schedule-table td { padding:10px 8px; }
+            .day-header { font-size:1.2em; padding:12px 15px; } .download-btn { padding:15px 35px; font-size:1em; } .download-section { padding:30px 15px; }
         }
-
-        .download-btn:active {
-            transform: translateY(-1px);
-        }
-
-        .download-btn::before {
-            content: '📥 ';
-            font-size: 1.2em;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            h1 {
-                font-size: 1.8em;
-            }
-
-            .subtitle {
-                font-size: 0.9em;
-            }
-
-            .content {
-                padding: 20px 15px;
-            }
-
-            header {
-                padding: 30px 20px;
-            }
-
-            .schedule-table {
-                font-size: 0.9em;
-            }
-
-            .schedule-table th,
-            .schedule-table td {
-                padding: 10px 8px;
-            }
-
-            .day-header {
-                font-size: 1.2em;
-                padding: 12px 15px;
-            }
-
-            .download-btn {
-                padding: 15px 35px;
-                font-size: 1em;
-            }
-
-            .download-section {
-                padding: 30px 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .schedule-table {
-                font-size: 0.8em;
-            }
-
-            .badge {
-                display: block;
-                margin: 5px 0 0 0;
-                width: fit-content;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>🎯 Event Schedule 2025</h1>
-            <p class="subtitle">Three Days of Innovation, Competition & Excellence</p>
-        </header>
-
-        <div class="content">
-            <!-- Day 1 -->
-            <div class="day-section">
-                <div class="day-header">📅 Day 1</div>
-                <table class="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Event</th>
-                            <th>Room</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="time">8:00 AM - 9:00 AM</td>
-                            <td class="event">Reporting</td>
-                            <td class="room">—</td>
-                        </tr>
-                        <tr>
-                            <td class="time">9:00 AM - 9:30 AM</td>
-                            <td class="event">Physics Olympiad (S, H)<span class="badge badge-final">F</span><br>Project Display<span class="badge badge-final">F</span><br>Wall Magazine<span class="badge badge-final">F</span><br>Scrapbook<span class="badge badge-final">F</span><br>Photography Exhibition<span class="badge badge-final">F</span></td>
-                            <td class="room">303-307/311-312</td>
-                        </tr>
-                        <tr>
-                            <td class="time">9:00 AM - 4:30 PM</td>
-                            <td class="event">Gaming (Valorant + FC 26)<span class="badge badge-prelim">P</span></td>
-                            <td class="room">406-409</td>
-                        </tr>
-                        <tr>
-                            <td class="time">9:35 AM - 10:05 AM</td>
-                            <td class="event">Math Olympiad (J, S, H)<span class="badge badge-final">F</span></td>
-                            <td class="room">303-307/311-312</td>
-                        </tr>
-                        <tr>
-                            <td class="time">10:10 AM - 10:40 AM</td>
-                            <td class="event">Team Based Quiz (Preliminary) (J, S, H)<span class="badge badge-prelim">P</span></td>
-                            <td class="room">303-307/311-312</td>
-                        </tr>
-                        <tr>
-                            <td class="time">10:45 AM - 11:15 AM</td>
-                            <td class="event">Anime Quiz (J, S, H)<span class="badge badge-final">F</span></td>
-                            <td class="room">303-307/311-312</td>
-                        </tr>
-                        <tr>
-                            <td class="time">11:20 AM - 12:20 PM</td>
-                            <td class="event">Rubik's Cube</td>
-                            <td class="room">303-307/311-312</td>
-                        </tr>
-                        <tr>
-                            <td class="time">12:20 PM - 1:10 PM</td>
-                            <td class="event">SciFi-Pitch (Shark Tank Style) (S, H)<span class="badge badge-prelim">P</span></td>
-                            <td class="room">2nd Floor Auditorium</td>
-                        </tr>
-                        <tr>
-                            <td class="time">12:20 PM - 12:40 PM</td>
-                            <td class="event">Word Grid (J, S)<span class="badge badge-final">F</span></td>
-                            <td class="room">303-307/311-312</td>
-                        </tr>
-                        <tr>
-                            <td class="time">1:10 PM - 2:30 PM</td>
-                            <td class="event">Lunch & Prayer Break</td>
-                            <td class="room">—</td>
-                        </tr>
-                        <tr>
-                            <td class="time">2:40 PM - 3:10 PM</td>
-                            <td class="event">Book Based Quiz (S, H)<span class="badge badge-final">F</span><br>Festival Exhibition & Videography</td>
-                            <td class="room">303-307/311-312<br>407-409</td>
-                        </tr>
-                        <tr>
-                            <td class="time">3:30 PM - ⏰</td>
-                            <td class="event">Influencers' Talkshow</td>
-                            <td class="room">—</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Day 2 -->
-            <div class="day-section">
-                <div class="day-header">📅 Day 2</div>
-                <table class="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Event</th>
-                            <th>Room</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="time">9:00 AM - 10:00 AM</td>
-                            <td class="event">Reporting</td>
-                            <td class="room">—</td>
-                        </tr>
-                        <tr>
-                            <td class="time">10:00 AM - 12:00 PM</td>
-                            <td class="event">Gaming Final<span class="badge badge-prelim">P</span><br>Project Display<span class="badge badge-final">F</span><br>Scrapbook<span class="badge badge-final">F</span><br>Wall Magazine<span class="badge badge-final">F</span><br>Photography Exhibition<span class="badge badge-final">F</span></td>
-                            <td class="room">403-405<br>406-409<br>409<br>407-409<br>308-309</td>
-                        </tr>
-                        <tr>
-                            <td class="time">11:00 AM - 12:00 PM</td>
-                            <td class="event">Team Based Quiz (Final) (J, S, H)<br>Visiting Hour<br>Festival Exhibition<br>Videography</td>
-                            <td class="room">303-307/311-312<br>—<br>—<br>2nd Floor Auditorium</td>
-                        </tr>
-                        <tr>
-                            <td class="time">12:00 PM - 1:30 PM</td>
-                            <td class="event">Lunch Break</td>
-                            <td class="room">—</td>
-                        </tr>
-                        <tr>
-                            <td class="time">1:30 PM - 2:30 PM</td>
-                            <td class="event">Lunch Break (Extended)</td>
-                            <td class="room">—</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Day 3 -->
-            <div class="day-section">
-                <div class="day-header">📅 Day 3</div>
-                <table class="schedule-table">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Event</th>
-                            <th>Room</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="time">3:00 PM - 6:30 PM</td>
-                            <td class="event">🏆 Closing & Prize Giving Ceremony</td>
-                            <td class="room">—</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="download-section">
-            <h2 style="margin-bottom: 20px; color: #667eea;">Download Complete Schedule</h2>
-            <button class="download-btn" onclick="downloadSchedule()">Download PDF</button>
-        </div>
-
-        <footer>
-            <p>© 2025 Event Schedule | Stay Updated, Stay Organized</p>
-        </footer>
-    </div>
-
-    <script>
-        function downloadSchedule() {
-            // Redirect to Google Drive link
-            window.open('https://drive.google.com/file/d/1Ggh-k66H7gKnBC7wefEBVEbidnxs5-oL/view?usp=sharing', '_blank');
-        }
-
-        // Add smooth scroll behavior
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-
-        // Test the download function
-        console.log('Download function ready');
-    </script>
-</body>
-</html>
+        @media (max-width:480px) {
+            .schedule-table { font-size:0.8em; } .
